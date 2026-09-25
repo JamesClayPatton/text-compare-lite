@@ -1,21 +1,26 @@
 <div align="center">
 
-<img src="public/icon.svg" width="76" alt="" />
+<img src="public/icon.svg" width="84" alt="" />
 
 # text.compare lite
 
-**See exactly what changed.**<br />
-Open-source text diff that runs in your browser: text, code, Word, Excel, PDF and images. No accounts, no uploads, no ads.
+### The simplest way to run your own private diff tool.
 
-[**Try it at text.compare**](https://text.compare) &nbsp;·&nbsp;
-[Host your own](#host-your-own-copy) &nbsp;·&nbsp;
-[How it works](#how-it-works) &nbsp;·&nbsp;
-[Support the project](#support)
+Text, code, JSON, CSV, Word, Excel, PDF and images, compared entirely in your browser.<br />
+No backend, no database, no accounts, no API keys. Clone it, run it, done.
+
+[**Try it live**](https://text.compare) &nbsp;·&nbsp;
+[Choose a version](#choose-your-version) &nbsp;·&nbsp;
+[Quick start](#quick-start) &nbsp;·&nbsp;
+[Features](#features) &nbsp;·&nbsp;
+[Self-host](#host-your-own-copy) &nbsp;·&nbsp;
+[How it works](#how-it-works)
 
 [![Tests](https://github.com/JamesClayPatton/text-compare-lite/actions/workflows/ci.yml/badge.svg)](https://github.com/JamesClayPatton/text-compare-lite/actions/workflows/ci.yml)
 [![License: AGPL-3.0](https://img.shields.io/badge/license-AGPL--3.0-2346b8)](LICENSE)
-![No ads](https://img.shields.io/badge/ads-none-1a9c63)
-![No tracking](https://img.shields.io/badge/tracking-none-1a9c63)
+![Setup: zero config](https://img.shields.io/badge/setup-zero%20config-1a9c63)
+![Server code: none](https://img.shields.io/badge/server%20code-none-1a9c63)
+![Tracking: none](https://img.shields.io/badge/tracking-none-1a9c63)
 [![Buy me a coffee](https://img.shields.io/badge/buy%20me%20a%20coffee-%E2%98%95-FFDD00)](https://buymeacoffee.com/Clayberd)
 
 </div>
@@ -25,25 +30,93 @@ Open-source text diff that runs in your browser: text, code, Word, Excel, PDF an
   <img src="docs/hero-light.png" alt="Two versions of a JavaScript file side by side. A moved function is shown in violet with 'Moved to line 12' and 'Moved from line 3' tags; changed lines are red and green with the exact changed characters highlighted." />
 </picture>
 
+## Choose your version
+
+<table>
+<tr>
+<th width="50%">🪶 text.compare lite<br /><sub>you are here</sub></th>
+<th width="50%">🚀 text.compare full</th>
+</tr>
+<tr>
+<td valign="top">
+
+**The simplest way to self-host.** Static files only, no backend code, nothing to configure.
+
+- Every diff feature
+- Library and history in your browser
+- No outside services at all
+- Smallest codebase to read and trust
+
+**Best for:** your laptop, a company network, or free static hosting.
+
+<a href="#quick-start"><img src="https://img.shields.io/badge/Get%20started-lite-1a9c63?style=for-the-badge" alt="Get started with lite" /></a>
+
+</td>
+<td valign="top">
+
+**Everything behind [text.compare](https://text.compare).** The same tool, plus optional extras.
+
+- Every diff feature
+- Optional sign-in (Google or email link) with **end-to-end encrypted** cloud saves via Supabase
+- Admin panel with anonymous usage counts
+- Optional Google Analytics
+
+**Best for:** running your own public site with accounts.
+
+<a href="https://github.com/JamesClayPatton/text-compare"><img src="https://img.shields.io/badge/Go%20to-full%20version-2346b8?style=for-the-badge" alt="Go to the full version" /></a>
+
+</td>
+</tr>
+</table>
+
+Both are open source under the same license, and both run with no setup. The full version just has
+more code, because its extras are there even when switched off.
+
+## Quick start
+
+You need [Node.js](https://nodejs.org) 22.12 or newer (24 LTS recommended). That's the only requirement.
+
+```sh
+git clone https://github.com/JamesClayPatton/text-compare-lite.git
+cd text-compare-lite
+npm install
+npm run dev
+```
+
+Open http://localhost:5173 and start comparing. There is nothing to configure and no `.env` file to fill in.
+
+**Prefer Docker?** No Node needed:
+
+```sh
+git clone https://github.com/JamesClayPatton/text-compare-lite.git && cd text-compare-lite
+docker build -t text-compare-lite . && docker run -d -p 8080:80 text-compare-lite
+```
+
+**Want it online?** Deploy a free copy in one click:
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/JamesClayPatton/text-compare-lite)
+&nbsp;
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/JamesClayPatton/text-compare-lite)
+
 ## Why this exists
 
 Comparing two pieces of text is a simple job, but most free diff sites wrap it in banner ads, cookie
 walls and upsells, and many quietly upload whatever you paste to their servers. That's a bad deal
-when the text is a contract, a config file with secrets, or your own writing.
+when the text is a contract, a config file full of secrets, or your own writing.
 
-text.compare lite is the diff tool I wanted instead: fast, clean, private by design, and good at the
-hard cases like moved code, reformatted JSON, PDFs and Word documents. It's open source, so you can
-check every claim below, or run your own copy in a couple of minutes.
+This is the diff tool I wanted instead:
 
-It is the open-source core of [text.compare](https://text.compare). The hosted site adds optional
-accounts on top; this version has no accounts, no server and no analytics, just the tool.
+- 🔒 **Private by design.** Comparing happens in your browser tab. Your text is never uploaded, and the code is small enough to check that yourself.
+- ⚡ **Fast.** A Myers diff on integers, with the heavy stats in a background worker. An 8 MB log against an edited copy takes about two seconds.
+- 🧠 **Good at the hard cases.** Moved code, reformatted JSON, reordered CSV rows, PDFs, Word files and screenshots.
+- 📦 **Easy to host.** `npm run build` gives you a folder of static files that runs anywhere.
 
 ## Features
 
 ### See what changed, precisely
 
 - **Side by side or unified**, with changed words or single characters highlighted inside each line
-- **Moved blocks** are shown in violet with a tag like *Moved to line 12* that jumps to the other copy, instead of appearing as a big deletion plus a big addition
+- **Moved blocks** shown in violet with a tag like *Moved to line 12* that jumps to the other copy, instead of a big deletion plus a big addition
 - **Syntax highlighting** for 100+ languages, picked from the file name or the text itself
 - **Change map** beside the editor, <kbd>F7</kbd> / <kbd>Shift</kbd>+<kbd>F7</kbd> to step through changes, and an option to hide unchanged lines
 - **Merge as you go**: both sides are editable, with undo, find and replace, and arrows that copy a block across
@@ -61,36 +134,49 @@ accounts on top; this version has no accounts, no server and no analytics, just 
 | **Document mode** for prose: wrapped paragraphs in a readable serif, changes shown word by word. Opens **PDF** and **Word (.docx)** files directly. | <img src="docs/document-mode.png" alt="Two paragraphs compared in document mode with changed words highlighted" width="420" /> |
 | **Image compare** side by side, with a slider, as an overlay, or as a pixel-difference map that reports how much of the image changed. | <img src="docs/image-compare.png" alt="Pixel difference view of two checkout screenshots: only the changed price digit and the recoloured button are highlighted" width="420" /> |
 
-### Save it and come back later
+### Keep it, share it, export it
 
-- **Library** with your **saved comparisons** and a **history** of recent ones, searchable, one click to reopen
-- Everything is kept in your browser, with no account needed
-
-### Share and export
-
+- **Library** of saved comparisons and a **history** of recent ones, searchable, kept in your browser
 - **Copy link** puts the whole comparison inside the link itself. Nothing is stored anywhere
 - **Report**: a self-contained HTML redline to send to someone, or print it straight to PDF
 - **`.patch`** download in standard unified format (works with `git apply`), or copy the diff
 - **Tools** to format JSON with sorted keys, sort lines, strip trailing spaces and swap sides
-- Light and dark themes, a phone layout, and offline support once installed as an app
+- Light and dark themes, a phone layout, and **works offline** once installed as an app
 
-## Privacy by design
+### Keyboard shortcuts
+
+| Keys | Action |
+|---|---|
+| <kbd>F7</kbd> or <kbd>Alt</kbd>+<kbd>↓</kbd> | Next change |
+| <kbd>Shift</kbd>+<kbd>F7</kbd> or <kbd>Alt</kbd>+<kbd>↑</kbd> | Previous change |
+| <kbd>Ctrl</kbd>+<kbd>F</kbd> | Find and replace in a side |
+| <kbd>Ctrl</kbd>+<kbd>Z</kbd> | Undo an edit or merge |
+| <kbd>Ctrl</kbd>+<kbd>S</kbd> | Save the comparison to your library |
+| <kbd>?</kbd> | Show help |
+
+### Ready-made landing pages
+
+The build creates a page for each common job, each starting the tool in the right mode, with its own
+title, description and FAQ for search engines: `/json-compare/`, `/pdf-compare/`, `/word-compare/`,
+`/excel-compare/`, `/image-compare/` and `/code-compare/`. Add your own in [`site/pages.ts`](site/pages.ts).
+
+## Privacy
 
 | | Where it goes |
 |---|---|
 | Text you paste or type | Compared in your browser tab. It never leaves the browser |
 | Files you open (PDF, Word, Excel, images) | Read in your browser; never uploaded |
-| Copied share links | The text rides in the part after `#`, which browsers never send to a server |
-| History and saves | Kept in this browser only (IndexedDB). History can be turned off in Options |
-| Analytics and tracking | None |
+| Share links | The text rides in the part after `#`, which browsers never send to a server |
+| Library and history | Kept in this browser only (IndexedDB). History can be turned off in Options |
+| Analytics, cookies, tracking | None |
 
-Nothing you compare is ever sent over the network. The included server config sets a Content
-Security Policy that blocks every outside script and connection.
+The included [`nginx.conf`](nginx.conf) sets a Content Security Policy that blocks every outside
+script and connection, and a browser test fails if the page ever contacts another site.
 
 ## How it works
 
-text.compare lite is a static site: HTML, CSS and JavaScript. All the comparing happens in the
-browser, and there is no server code at all.
+text.compare lite is a static site: HTML, CSS and TypeScript built with [Vite](https://vite.dev).
+All the comparing happens in the browser, and there is no server code at all.
 
 ```mermaid
 flowchart LR
@@ -184,11 +270,11 @@ Source: [`src/documents.ts`](src/documents.ts), [`src/office.ts`](src/office.ts)
 sequenceDiagram
     participant You
     participant Browser
-    participant Server as text.compare server
+    participant Server as Web server
     participant Friend
     You->>Browser: Copy link
     Browser->>Browser: JSON, then lz-string compression
-    Browser-->>You: text.compare/#v1:N4Ig…
+    Browser-->>You: example.com/#v1:N4Ig…
     You->>Friend: Send the link
     Friend->>Server: GET / (the #… part is never sent)
     Server-->>Friend: The static page
@@ -204,34 +290,25 @@ Source: [`src/share.ts`](src/share.ts)
 
 ## Host your own copy
 
-The build is a folder of static files, so it runs anywhere that serves files: a $5 VPS, a Raspberry
-Pi, GitHub Pages, Cloudflare Pages or Netlify. It needs no database, no server code, and no
-outside services.
+`npm run build` puts the whole site in `dist/`, a folder of static files. It runs anywhere that
+serves files: a $5 VPS, a Raspberry Pi, GitHub Pages, Cloudflare Pages, Netlify or Vercel. All paths
+are relative, so it also works from a sub-folder such as `example.com/diff/`.
+
+### Docker
 
 ```sh
-git clone https://github.com/JamesClayPatton/text-compare-lite.git
-cd text-compare-lite
-npm install
-npm run build          # the site is now in dist/
+docker build -t text-compare-lite .
+docker run -d --restart unless-stopped -p 8080:80 --name text-compare-lite text-compare-lite
 ```
 
-You need [Node.js](https://nodejs.org) 22.12 or newer to build (24 LTS recommended; see `.nvmrc`). Visitors only need a modern browser.
+The image serves the site with nginx, with long-lived caching for hashed assets and strict security
+headers ([`nginx.conf`](nginx.conf)).
 
-### Option 1: Docker
-
-```sh
-docker build -t text-compare .
-docker run -d --restart unless-stopped -p 8080:80 --name text-compare text-compare
-```
-
-Open http://localhost:8080. The image serves the site with nginx, with long-lived caching for
-hashed assets and strict security headers ([`nginx.conf`](nginx.conf)).
-
-### Option 2: Caddy (automatic HTTPS)
+### Caddy (automatic HTTPS)
 
 ```caddyfile
 diff.example.com {
-	root * /srv/text-compare/dist
+	root * /srv/text-compare-lite/dist
 	encode gzip zstd
 	header /assets/* Cache-Control "public, max-age=31536000, immutable"
 	header /sw.js Cache-Control "no-cache"
@@ -239,20 +316,18 @@ diff.example.com {
 }
 ```
 
-### Option 3: Free static hosting
+### Free static hosting
 
 | Host | Build command | Output folder |
 |---|---|---|
 | **GitHub Pages** | Fork, then *Settings → Pages → Source: GitHub Actions*, and run the *Deploy to GitHub Pages* workflow | built for you |
 | **Cloudflare Pages** | `npm run build` | `dist` |
-| **Netlify** / **Vercel** | `npm run build` | `dist` |
-
-All paths are relative, so the site also works from a sub-folder such as `example.com/diff/`.
+| **Netlify** / **Vercel** | `npm run build` (or use the buttons above) | `dist` |
 
 ### Configuration
 
-`SITE_URL` sets your public address, used for canonical links, the sitemap and link previews. It
-defaults to `https://text.compare`.
+There is exactly one optional setting. `SITE_URL` is your public address, used for canonical links,
+the sitemap and link previews:
 
 ```sh
 SITE_URL=https://diff.example.com npm run build
@@ -260,7 +335,7 @@ SITE_URL=https://diff.example.com npm run build
 
 ### Make it yours
 
-- **Page titles, descriptions and the text below the tool** for the home page and each landing page (`/json-compare/`, `/pdf-compare/` and so on) live in [`site/pages.ts`](site/pages.ts). Add an entry and the build creates the page and adds it to the sitemap
+- **Page text and SEO** for the home page and each landing page live in [`site/pages.ts`](site/pages.ts). Add an entry and the build creates the page and adds it to the sitemap
 - **Colours** are CSS variables at the top of [`src/styles.css`](src/styles.css), with light and dark sets
 - **Icon and share image** are in [`public/`](public)
 - **Search engine key**: `public/55801fe4eb037647115719a2769a5b6f.txt` is text.compare's [IndexNow](https://www.indexnow.org) key. Delete it in your copy and make your own if you want to notify Bing about your pages
@@ -303,7 +378,7 @@ src/
   share.ts             share-link encoding
   library/             saved comparisons and history (IndexedDB)
   analysis*.ts         stats in a background worker
-  ui/                  change map, data and image panels, popovers, toasts
+  ui/                  library drawer, change map, data and image panels, popovers, toasts
 site/
   pages.ts             landing page content and SEO metadata
 tests/                 unit tests
@@ -315,27 +390,75 @@ The unit tests cover the diff engine, options, moves, structure diffs, reports, 
 share links. The browser tests drive the real page: typing, merging, share links, the library,
 every landing page, and opening real PDF, Word, Excel and image files.
 
+## FAQ
+
+<details>
+<summary><b>Is my text really never uploaded?</b></summary>
+
+Yes. There is no server code in this repo to upload it to. Diffing, file reading and image
+comparison all run in your browser, the library lives in IndexedDB, and share links keep the text
+after the `#`, which browsers never send. The CSP in `nginx.conf` blocks outside connections, and a
+browser test fails if the page contacts any other site.
+</details>
+
+<details>
+<summary><b>Can I use it at work?</b></summary>
+
+Yes, for personal or commercial use, as long as you keep the footer credit. If you run a *modified*
+version as a website, the AGPL asks you to publish your changes. See [License](#license).
+</details>
+
+<details>
+<summary><b>How big can the files be?</b></summary>
+
+It's limited by your browser's memory rather than a fixed cap. Multi-megabyte logs work well, and a
+time budget makes very unusual inputs fall back to a coarser diff instead of freezing the page.
+Share links are limited by URL length, so for large texts download a report or `.patch` instead.
+</details>
+
+<details>
+<summary><b>Does it work offline?</b></summary>
+
+Yes. Once a production build has loaded, a service worker keeps it working without a connection,
+and you can install it as an app from your browser's menu.
+</details>
+
+<details>
+<summary><b>I want sign-in and synced saves. Where are they?</b></summary>
+
+In the full version, [text-compare](https://github.com/JamesClayPatton/text-compare). Lite leaves
+them out on purpose so it has no outside dependencies.
+</details>
+
 ## Contributing
 
-Bug reports and pull requests are welcome. Please run `npm test` and `npm run test:e2e` before
-opening a pull request, and keep the privacy promise intact: nothing a user compares may leave the
-browser. By contributing you agree that your contribution is licensed under the AGPL-3.0, like the
-rest of the project.
+Bug reports, ideas and pull requests are welcome. Please:
+
+1. Run `npm test` and `npm run test:e2e` before opening a pull request.
+2. Keep the privacy promise intact: nothing a user compares may leave the browser.
+3. Keep lite dependency-free: no backend, no outside services.
+
+By contributing you agree that your contribution is licensed under the AGPL-3.0, like the rest of
+the project.
 
 ## Support
 
 text.compare lite is free and will stay that way, with no ads. If it saves you some time, you can
-[buy me a coffee](https://buymeacoffee.com/Clayberd). It genuinely helps keep the site running.
+[buy me a coffee](https://buymeacoffee.com/Clayberd). It genuinely helps.
 
 ## License
 
 Copyright © 2026 James Patton ([jamesclaypatton.com](https://jamesclaypatton.com)).
 
-text.compare lite is free software under the [GNU Affero General Public License v3.0](LICENSE). In short:
+text.compare lite is free software under the [GNU Affero General Public License v3.0](LICENSE), with
+an attribution term in [NOTICE](NOTICE). In short:
 
-- **Use it, study it, change it and host it**, for personal or commercial use.
-- **If you run a modified version as a website, publish your source code** under the same license and link to it from the site. The footer's *Get the code on GitHub* link does this for the original.
-- **Keep the credit**: copies must keep the *Made by James Patton* attribution in the footer. You can add your own name next to it. See [NOTICE](NOTICE) for the exact terms.
+- ✅ **Use it, study it, change it and host it**, for personal or commercial use.
+- 📤 **If you run a modified version as a website, publish your source code** under the same license and link to it from the site. The footer's *Get the code on GitHub* link does this for the original.
+- 🙏 **Keep the credit**: copies must keep the *Made by James Patton* attribution in the footer. You can add your own name next to it. See [NOTICE](NOTICE) for the exact terms.
 
-Built with [CodeMirror 6](https://codemirror.net), [PDF.js](https://mozilla.github.io/pdf.js/),
-[fflate](https://github.com/101arrowz/fflate) and [lz-string](https://github.com/pieroxy/lz-string).
+## Built with
+
+[CodeMirror 6](https://codemirror.net) · [PDF.js](https://mozilla.github.io/pdf.js/) ·
+[fflate](https://github.com/101arrowz/fflate) · [lz-string](https://github.com/pieroxy/lz-string) ·
+[Vite](https://vite.dev) · [Vitest](https://vitest.dev) · [Playwright](https://playwright.dev)
