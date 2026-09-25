@@ -34,24 +34,10 @@ No backend, no database, no accounts, no API keys. Clone it, run it, done.
 
 <table>
 <tr>
-<th width="50%">🪶 text.compare lite<br /><sub>you are here</sub></th>
-<th width="50%">🚀 text.compare full</th>
+<th width="50%">text.compare full</th>
+<th width="50%">text.compare lite<br /><sub>you are here</sub></th>
 </tr>
 <tr>
-<td valign="top">
-
-**The simplest way to self-host.** Static files only, no backend code, nothing to configure.
-
-- Every diff feature
-- Library and history in your browser
-- No outside services at all
-- Smallest codebase to read and trust
-
-**Best for:** your laptop, a company network, or free static hosting.
-
-<a href="#quick-start"><img src="https://img.shields.io/badge/Get%20started-lite-1a9c63?style=for-the-badge" alt="Get started with lite" /></a>
-
-</td>
 <td valign="top">
 
 **Everything behind [text.compare](https://text.compare).** The same tool, plus optional extras.
@@ -64,6 +50,20 @@ No backend, no database, no accounts, no API keys. Clone it, run it, done.
 **Best for:** running your own public site with accounts.
 
 <a href="https://github.com/JamesClayPatton/text-compare"><img src="https://img.shields.io/badge/Go%20to-full%20version-2346b8?style=for-the-badge" alt="Go to the full version" /></a>
+
+</td>
+<td valign="top">
+
+**The simplest way to self-host.** Static files only, no backend code, nothing to configure.
+
+- Every diff feature
+- Library and history in your browser
+- No outside services at all
+- Smallest codebase to read and trust
+
+**Best for:** your laptop, a company network, or free static hosting.
+
+<a href="#quick-start"><img src="https://img.shields.io/badge/Get%20started-lite-1a9c63?style=for-the-badge" alt="Get started with lite" /></a>
 
 </td>
 </tr>
@@ -106,10 +106,10 @@ when the text is a contract, a config file full of secrets, or your own writing.
 
 This is the diff tool I wanted instead:
 
-- 🔒 **Private by design.** Comparing happens in your browser tab. Your text is never uploaded, and the code is small enough to check that yourself.
-- ⚡ **Fast.** A Myers diff on integers, with the heavy stats in a background worker. An 8 MB log against an edited copy takes about two seconds.
-- 🧠 **Good at the hard cases.** Moved code, reformatted JSON, reordered CSV rows, PDFs, Word files and screenshots.
-- 📦 **Easy to host.** `npm run build` gives you a folder of static files that runs anywhere.
+- **Private by design.** Comparing happens in your browser tab. Your text is never uploaded, and the code is small enough to check that yourself.
+- **Fast.** A Myers diff on integers, with the heavy stats in a background worker. An 8 MB log against an edited copy takes about two seconds.
+- **Good at the hard cases.** Moved code, reformatted JSON, reordered CSV rows, PDFs, Word files and screenshots.
+- **Easy to host.** `npm run build` gives you a folder of static files that runs anywhere.
 
 ## Features
 
@@ -453,9 +453,9 @@ Copyright © 2026 James Patton ([jamesclaypatton.com](https://jamesclaypatton.co
 text.compare lite is free software under the [GNU Affero General Public License v3.0](LICENSE), with
 an attribution term in [NOTICE](NOTICE). In short:
 
-- ✅ **Use it, study it, change it and host it**, for personal or commercial use.
-- 📤 **If you run a modified version as a website, publish your source code** under the same license and link to it from the site. The footer's *Get the code on GitHub* link does this for the original.
-- 🙏 **Keep the credit**: copies must keep the *Made by James Patton* attribution in the footer. You can add your own name next to it. See [NOTICE](NOTICE) for the exact terms.
+- **Use it, study it, change it and host it**, for personal or commercial use.
+- **If you run a modified version as a website, publish your source code** under the same license and link to it from the site. The footer's *Get the code on GitHub* link does this for the original.
+- **Keep the credit**: copies must keep the *Made by James Patton* attribution in the footer. You can add your own name next to it. See [NOTICE](NOTICE) for the exact terms.
 
 ## Built with
 
